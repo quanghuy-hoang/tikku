@@ -20,7 +20,9 @@ jobs:
 
       - run: |-
           echo "REGISTRY=$REGION-docker.pkg.dev" >> $GITHUB_ENV
-          echo "IMAGE_NAME=$REGISTRY/$PROJECT_ID/$REPO_NAME/$GITHUB_REF:$GITHUB_SHA" >> $GITHUB_ENV
+
+      - run: |-
+          echo "IMAGE_NAME=$REGISTRY/$PROJECT_ID/$REPO_NAME/$(git rev-parse --short HEAD):$GITHUB_SHA" >> $GITHUB_ENV
 
       # Authenticate with Google Cloud
       - id: auth
