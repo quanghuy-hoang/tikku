@@ -9,6 +9,7 @@ env:
   PROJECT_ID: ${{ secrets.CLOUD_RUN_PROJECT_NAME }}
   REGION: asia-southeast1
   REPO_NAME: tikku
+  IMAGE: main
 
 jobs:
   build-and-deploy:
@@ -33,16 +34,16 @@ jobs:
 
       - name: Build and tag the docker image
         run: |-
-          docker build . --tag asia-southeast1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
+          docker build . --tag $REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$IMAGE:$GITHUB_SHA
 
       - name: Push the image to the Google Container Registry (GCR)
         run: |-
-          docker push asia-southeast1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
+          docker push $REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$IMAGE:$GITHUB_SHA
 
       - name: Deploy
         run: |-
           gcloud run deploy $REPO_NAME \
           --region $REGION \
-          --image asia-southeast1-docker.pkg.dev/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA \
+          --image $REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$IMAGE:$GITHUB_SHA \
           --platform "managed" \
           --quiet
