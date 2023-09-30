@@ -1,7 +1,7 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 const uri = process.env.MONGODB_URI;
 
-if (!uri) throw new Error("Please add your Mongo URI to the .env.local file");
+if (!uri) throw new Error("Please add your MONGODB_URI to the .env.local file");
 
 declare global {
   namespace globalThis {
