@@ -1,20 +1,20 @@
-import { getMovies } from '@/lib/mongo/movies'
+import { getTicketTypes } from '@/lib/mongo/ticketTypes'
 
-async function fetchMovies() {
-  const { movies } = await getMovies()
-  if (!movies) throw new Error('Failed to fetch movies!')
+async function fetchTicketTypes() {
+  const { ticketTypes } = await getTicketTypes()
+  if (!ticketTypes) throw new Error('Failed to fetch ticket types!')
 
-  return movies
+  return ticketTypes
 }
 
 export default async function Home() {
-  const movies = await fetchMovies()
+  const ticketTypes = await fetchTicketTypes()
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <section>
         <ul>
-          {movies.map(movie => (
-            <li key={movie._id}>{movie.title}</li>
+          {ticketTypes.map(type => (
+            <li key={type._id}>{type.name} {type.price}</li>
           ))}
         </ul>
       </section>
