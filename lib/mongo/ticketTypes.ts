@@ -17,7 +17,7 @@ async function init() {
   try {
     client = await clientPromise;
     db = client.db(process.env.DB_NAME);
-    ticket_type = db.collection(process.env.TICKET_TYPE_COLLECTION_NAME!);
+    ticket_type = db.collection("ticket_type");
   } catch (error) {
     throw error;
   }
