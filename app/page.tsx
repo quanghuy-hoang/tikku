@@ -1,4 +1,5 @@
-import { getTicketTypes } from '@/lib/mongo/ticketTypes'
+import Order from '@/components/order/order'
+import { getTicketTypes } from '@/lib/mongo/ticket-types'
 
 async function fetchTicketTypes() {
   const { ticketTypes } = await getTicketTypes()
@@ -10,15 +11,8 @@ async function fetchTicketTypes() {
 export default async function Home() {
   const ticketTypes = await fetchTicketTypes()
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <section>
-        <ul>
-          {ticketTypes.map(type => (
-            <li key={type._id}>{type.name} {type.price}</li>
-          ))}
-        </ul>
-      </section>
-
+    <main className="flex flex-col items-center justify-between lg:p-20 p-4">
+      <Order ticketTypes={ticketTypes} />
     </main>
   )
 }

@@ -10,6 +10,7 @@ export type TicketType = {
   name: string;
   price: number;
   details: string;
+  amount: number;
 };
 
 async function init() {
