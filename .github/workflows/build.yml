@@ -48,14 +48,6 @@ jobs:
         run: |
           docker run --rm ${{ env.IMAGE_NAME }}:test
 
-      - name: Build and push
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: ${{ env.IMAGE_NAME }}:latest
-
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
