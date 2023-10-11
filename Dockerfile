@@ -34,6 +34,11 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED 1
 
+ARG MONGODB_URI
+ENV MONGODB_URI ${MONGODB_URI}
+ARG DB_NAME
+ENV DB_NAME ${DB_NAME}
+
 RUN npm run build
 
 # Production image, copy all the files and run next
