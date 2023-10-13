@@ -7,11 +7,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "@components/ui/table"
 
-import type { TicketType } from '@/lib/mongo/ticket-types'
-import { AmountSelector } from "./amount-selector";
-import { formatVND, toTitleCase } from "@/lib/utils";
+import type { TicketType } from '@lib/mongo/ticket-types'
+import { AmountSelector } from "./AmountSelector";
+import { formatVND, toTitleCase } from "@lib/utils";
 
 export type OrderTableProps = {
   data: TicketType[];

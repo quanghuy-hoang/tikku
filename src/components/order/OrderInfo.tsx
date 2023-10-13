@@ -6,10 +6,10 @@ import {
     TableHeader,
     TableFooter,
     TableRow,
-} from "@/components/ui/table"
-import { TicketType } from "@/lib/mongo/ticket-types"
-import { formatVND, toTitleCase } from "@/lib/utils"
-import QrSvgGenerator from "../qr-code/qr-svg"
+} from "@components/ui/table"
+import { TicketType } from "@lib/mongo/ticket-types"
+import { formatVND, toTitleCase } from "@lib/utils"
+import QrSvgGenerator from "../qr-code/QrSvgGenerator"
 
 
 function calculateTotalOrder(tableData: TicketType[]) {
