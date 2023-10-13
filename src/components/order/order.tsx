@@ -8,7 +8,7 @@ type OrderProps = {
     ticketTypes: TicketType[]
 }
 
-export default function Order(props: OrderProps) {
+export function Order(props: OrderProps) {
     const tableState = props.ticketTypes.map(v => ({ ...v, amount: 0 }))
     const tableInitState = tableState.sort((a, b) => {
         return a.price - b.price

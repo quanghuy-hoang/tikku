@@ -1,4 +1,4 @@
-import Order from '@components/order/Order'
+import { Order } from '@components/order/Order'
 import { Layout } from '@layout/Layout'
 import { getTicketTypes } from '@lib/mongo/ticket-types'
 
