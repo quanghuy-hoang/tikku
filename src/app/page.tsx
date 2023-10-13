@@ -1,4 +1,4 @@
-import { Order } from '@components/order/Order'
+import { OrderComponent } from '@components/order/OrderComponent'
 import { Layout } from '@layout/Layout'
 import { getTicketTypes } from '@lib/mongo/ticket-types'
 
@@ -13,7 +13,7 @@ export default async function Home() {
   const ticketTypes = await fetchTicketTypes()
   return (
     <Layout>
-      <Order ticketTypes={ticketTypes} />
+      <OrderComponent ticketTypes={ticketTypes} />
     </Layout>
   )
 }
