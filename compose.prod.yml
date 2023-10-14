@@ -1,7 +1,11 @@
 services:
   frontend:
     container_name: frontend
-    build: .
+    build:
+      context: .
+      args:
+        MONGODB_URI: ${MONGODB_URI}
+        DB_NAME: ${DB_NAME}
     restart: always
     environment:
       - NODE_ENV=production
