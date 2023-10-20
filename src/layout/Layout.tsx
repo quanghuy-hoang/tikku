@@ -6,7 +6,7 @@ type LayoutProps = {
 
 export const Layout = ({ children }: LayoutProps) => {
     return (
-        <section className='p-16 flex justify-center items-center'>
+        <section className='px-4 sm:px-8 py-16 md:px-12 lg:p-16 flex justify-center items-center'>
             {children}
         </section>
     )

@@ -24,48 +24,52 @@ function calculateTotalOrder(tableData: TicketType[]) {
 const OrderInfo = ({ data }: { data: TicketType[] }) => {
     const totalOrder = calculateTotalOrder(data)
     return (
-        <div className="grid gap-4">
-            <Table className="w-full">
-                <TableHeader>
-                    <TableRow>
-                        <TableHead className="w-1/2">Ticket Type</TableHead>
-                        <TableHead className="text-right">Amount</TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {data.map(type =>
-                        <TableRow key={type._id}>
-                            <TableCell>
-                                <p className="font-medium">
-                                    {toTitleCase(type.name)}
-                                </p>
-                                <p className="text-slate-500">
-                                    {formatVND(type.price)}
+        <div className="flex flex-col sm:flex-row gap-8">
+            <div className="w-full">
+                <Table>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead className="w-1/2">Ticket Type</TableHead>
+                            <TableHead className="text-right">Amount</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {data.map(type =>
+                            <TableRow key={type._id}>
+                                <TableCell>
+                                    <p className="font-medium">
+                                        {toTitleCase(type.name)}
+                                    </p>
+                                    <p className="text-slate-500">
+                                        {formatVND(type.price)}
 
+                                    </p>
+                                </TableCell>
+                                <TableCell className="text-right">
+                                    <p>{type.amount}</p>
+                                    {formatVND(type.price * type.amount)}
+                                </TableCell>
+                            </TableRow>
+                        )}
+                        <TableRow className="bg-muted font-bold">
+                            <TableCell>
+                                <p>
+                                    Total
                                 </p>
                             </TableCell>
                             <TableCell className="text-right">
-                                <p>{type.amount}</p>
-                                {formatVND(type.price * type.amount)}
+                                {formatVND(totalOrder)}
                             </TableCell>
                         </TableRow>
-                    )}
-                    <TableRow className="bg-slate-800 text-slate-200 hover:bg-slate-900 hover:text-slate-50">
-                        <TableCell>
-                            <p className="font-medium">
-                                Total
-                            </p>
-                        </TableCell>
-                        <TableCell className="text-right">
-                            {formatVND(totalOrder)}
-                        </TableCell>
-                    </TableRow>
-                </TableBody>
-
-            </Table>
-            {
-                totalOrder ? <QrSvgGenerator totalOrder={totalOrder} /> : null
-            }
+                    </TableBody>
+                </Table>
+            </div>
+            <div className="w-full flex justify-center sm:flex-col sm:align-middle sm:w-[25em]">
+                <div className="w-3/5 sm:w-full text-center">
+                    <p className="py-2 text-sm">Scan QR with your banking app.</p>
+                    <QrSvgGenerator totalOrder={totalOrder} />
+                </div>
+            </div>
 
         </div>
 

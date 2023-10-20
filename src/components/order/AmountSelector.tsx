@@ -12,15 +12,15 @@ type AmountSelectorProps = {
 
 export function AmountSelector(props: AmountSelectorProps) {
     return (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 -mx-4">
             <Button onClick={props.decreaseHandler} variant="ghost" size="icon">
-                <Minus className="h-4 w-4" />
+                <Minus className="w-4" />
             </Button>
-            <div className="w-5 text-center">
+            <div className="w-4 text-center">
                 {props.amount}
             </div>
             <Button onClick={props.increaseHandler} variant="ghost" size="icon">
-                <Plus className="h-4 w-4" />
+                <Plus className="w-4" />
             </Button>
         </div>
     )

@@ -21,9 +21,18 @@ export default function QrSvgGenerator({ totalOrder }: { totalOrder: number }) {
   const { SVG } = useQRCode();
 
   return (
-    <div className="border-4 border-slate-900 rounded-xl overflow-hidden">
+    <div className="border-4 border-slate-800 rounded-lg overflow-hidden">
       <SVG
-        text={qrTextBuilder('19034165746018', totalOrder.toString(), 'MOCK_TRANSACTION_ID')}
+        text={qrTextBuilder('19034165746018',
+          totalOrder.toString(),
+          'MOCK_TRANSACTION_ID'
+        )}
+        options={{
+          color: {
+            dark: '#1e293b',
+            light: '#FFF',
+          },
+        }}
       />
     </div>
   )

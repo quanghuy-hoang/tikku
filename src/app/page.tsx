@@ -1,6 +1,7 @@
 import { OrderComponent } from '@components/order/OrderComponent'
 import { Layout } from '@layout/Layout'
 import { getTicketTypes } from '@lib/mongo/ticket-types'
+import { ProfileForm } from '@components/booking/ProfileForm'
 
 async function fetchTicketTypes() {
   const { ticketTypes } = await getTicketTypes()
@@ -13,7 +14,10 @@ export default async function Home() {
   const ticketTypes = await fetchTicketTypes()
   return (
     <Layout>
-      <OrderComponent ticketTypes={ticketTypes} />
+      <div >
+        <ProfileForm />
+        <OrderComponent ticketTypes={ticketTypes} />
+      </div>
     </Layout>
   )
 }

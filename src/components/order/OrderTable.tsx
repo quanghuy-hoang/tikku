@@ -23,9 +23,8 @@ export function OrderTable(props: OrderTableProps) {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-1/2">Name</TableHead>
-          <TableHead className="text-right">Price</TableHead>
-          {/* <TableHead>Details</TableHead> */}
+          <TableHead className="">Name</TableHead>
+          <TableHead className="hidden text-right sm:table-cell">Price</TableHead>
           <TableHead className="text-right">Amount</TableHead>
         </TableRow>
       </TableHeader>
@@ -33,19 +32,26 @@ export function OrderTable(props: OrderTableProps) {
         {
           props.data.map(
             type =>
-              <TableRow key={type._id}>
-                <TableCell className="font-medium">
-                  {toTitleCase(type.name)}
+              <TableRow key={type._id} >
+                <TableCell className="text-base font-medium">
+                  {type.name}
+                  <p className="text-sm text-neutral-500">
+                    {type.details}
+                  </p>
                 </TableCell>
-                <TableCell className="text-right">
+                <TableCell className="hidden text-right sm:table-cell">
                   {formatVND(type.price)}
                 </TableCell>
-                {/* <TableCell>{ticketType.details}</TableCell> */}
-                <TableCell className="float-right">
-                  <AmountSelector
-                    amount={type.amount || 0}
-                    increaseHandler={() => props.handleChange(type._id, 1)}
-                    decreaseHandler={() => props.handleChange(type._id, -1)} />
+                <TableCell className="flex-1 justify-end align-middle items-center">
+                  <div className="float-right">
+                    <p className="text-right sm:hidden">
+                      {formatVND(type.price)}
+                    </p>
+                    <AmountSelector
+                      amount={type.amount || 0}
+                      increaseHandler={() => props.handleChange(type._id, 1)}
+                      decreaseHandler={() => props.handleChange(type._id, -1)} />
+                  </div>
                 </TableCell>
               </TableRow>
           )
