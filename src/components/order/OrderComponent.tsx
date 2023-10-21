@@ -1,15 +1,15 @@
 "use client"
-import { OrderTable } from '@/components/order/order-table'
-import { TicketType } from '@/lib/mongo/ticket-types'
+import { OrderTable } from '@components/order/OrderTable'
+import { TicketType } from '@lib/mongo/ticket-types'
 import { useState } from 'react'
-import OrderInfo from './order-info'
+import OrderInfo from './OrderInfo'
 
 type OrderProps = {
     ticketTypes: TicketType[]
 }
 
-export default function Order(props: OrderProps) {
-    const tableState = props.ticketTypes.map(v => ({ ...v, amount: 0 }))
+export const OrderComponent = ({ ticketTypes }: OrderProps) => {
+    const tableState = ticketTypes.map(v => ({ ...v, amount: 0 }))
     const tableInitState = tableState.sort((a, b) => {
         return a.price - b.price
     })
@@ -27,11 +27,9 @@ export default function Order(props: OrderProps) {
     }
 
     return (
-        <div className="grid gap-16 grid-cols-3 w-full">
-            <div className='col-span-2'>
-                <OrderTable data={tableData} handleChange={handleChange} />
-            </div>
-            <OrderInfo data={createOrderInfo(tableData)} />
+        <div className="grid gap-16 w-full">
+            <OrderTable data={tableData} handleChange={handleChange} />
+            {/* <OrderInfo data={createOrderInfo(tableData)} /> */}
         </div>
     )
 }
